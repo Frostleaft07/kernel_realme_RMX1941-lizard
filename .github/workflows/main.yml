@@ -44,15 +44,15 @@ jobs:
 
       - name: anykernel ~ zipping
         run: |
-         git clone https://github.com/Frostleaft07/AnyKernel3 -b Nethunter ~/any/
-         cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/
-         cd ~/any/ && zip -r9 KernelSU-${{ github.run_id }}.zip *
+         git clone https://github.com/Frostleaft07/AnyKernel3 -b KernelSU any/
+         cp out/arch/arm64/boot/Image.gz-dtb any/
+         cd any/ && zip -r9 KernelSU-${{ github.run_id }}.zip *
          
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
            files: |
-            /home/runner/any/KernelSU*
+            any/KernelSU*
            name: KernelSU-${{ github.run_id }}
            tag_name: ${{ github.run_id }}
         env:
